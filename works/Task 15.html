@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<head>
+    <title>Random Number with Colors (Vanishing Site)</title>
+    <style></style>
+</head>
+<body>
+    <div class="container" id="content">
+        <h2>Random with Colors Array</h2>
+        <label for="num1">Enter first integer (a):</label>
+        <input type="number" id="num1" required><br>
+        
+        <label for="num2">Enter second integer (b):</label>
+        <input type="number" id="num2" required><br>
+        
+        <button onclick="generateRandom()">Generate Random Number</button>
+        <p id="result">Random number is: </p>
+    </div>
+
+    <script>
+        const colors = ['red', 'green', 'blue', 'purple', 'orange', 'yellow', 'brown'];
+
+        function generateRandom() {
+            const a = parseInt(document.getElementById("num1").value);
+            const b = parseInt(document.getElementById("num2").value);
+
+            const randomNum = Math.floor(Math.random() * (b - a + 1)) + a;
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            const resultElement = document.getElementById("result");
+            resultElement.innerHTML = `Random number is: ${randomNum}`;
+            resultElement.style.color = randomColor;
+        }
+
+        window.onload = function() {
+            setTimeout(function() {
+                document.getElementById("content").classList.add("hidden");
+            }, 10000);
+        };
+    </script>
+</body>
+</html>

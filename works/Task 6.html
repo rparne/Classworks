@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Text Fields</title>
+    <style>
+        #a{
+            display: inline-block;
+        }
+        #i{
+            display: inline-block;
+        }
+    </style>
+    <script>
+        function convertToUppercase() {
+            var aF = document.getElementById("a");
+            var iF = document.getElementById("i");
+            iF.value = aF.value.toUpperCase();
+        }
+    </script>
+
+</head>
+<body>
+   
+    <input type="text" id="a" onkeyup="convertToUppercase()">
+    <input type="text" id="i" disabled><br><br>
+</body>
+</html>

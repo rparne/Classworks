@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head></head>
+<body>
+    <h2>Sum with Loop</h2>
+    <label for="numA">Enter first number (a): </label>
+    <input type="number" id="numA"><br><br>
+
+    <label for="numB">Enter second number (b): </label>
+    <input type="number" id="numB"><br><br>
+
+    <button onclick="calculateSum()">Calculate Sum</button>
+    <div id="output"></div>
+
+    <script>
+        function calculateSum() {
+            let a = parseInt(document.getElementById("numA").value);
+            let b = parseInt(document.getElementById("numB").value);
+            let sum = 0;
+            if (a > b) {
+                [a, b] = [b, a];
+            }
+            for (let i = a; i <= b; i++) {
+                sum += i;
+            }
+
+            document.getElementById("output").innerText = "Sum: " + sum;
+            console.log("Sum:", sum);
+        }
+    </script>
+</body>
+</html>

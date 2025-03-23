@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>City Inventory</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        table {
+            margin: auto;
+            border-collapse: collapse;
+            width: 40%;
+        }
+        td {
+            padding: 8px;
+            text-align: center;
+        }
+        input {
+            width: 80%;
+            padding: 5px;
+            font-size: 14px;
+        }
+        button {
+            padding: 8px;
+            width: 100%;
+            cursor: pointer;
+        }
+        #cityList {
+            margin-top: 20px;
+        }
+        .button-row td {
+            padding-top: 10px;
+        }
+        #searchContainer {
+            margin-top: 20px;
+        }
+        #searchInput {
+            width: 60%;
+            padding: 5px;
+            font-size: 14px;
+        }
+        #searchButton {
+            padding: 6px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>City Inventory</h2>
+
+    <table border="1">
+        <tr>
+            <td><input type="text" id="state" placeholder="Enter State"></td>
+            <td><input type="text" id="city" placeholder="Enter City"></td>
+        </tr>
+        <tr>
+            <td><input type="number" id="year" placeholder="Enter Year"></td>
+            <td><input type="number" id="pincode" placeholder="Enter Pincode"></td>
+        </tr>
+        <tr class="button-row">
+            <td><button onclick="insert()">Insert Info</button></td>
+            <td><button onclick="clearInputs()">Clear Inputs</button></td>
+        </tr>
+        <tr class="button-row">
+            <td><button onclick="displayCities()">Show All</button></td>
+            <td><button onclick="clearDisplay()">Clear Display</button></td>
+        </tr>
+    </table>
+
+    <div id="searchContainer">
+        <input type="text" id="searchInput" placeholder="Search by State or City">
+        <button id="searchButton" onclick="searchCities()">Search</button>
+    </div>
+
+    <h3>Current Inventory</h3>
+    <ul id="cityList"></ul>
+
+    <script>
+        let cities = [];
+
+        function City(state, city, year, pincode) {
+            this.state = state;
+            this.city = city;
+            this.year = year;
+            this.pincode = pincode;
+            this.describe = function () {
+                return `Inventory: ${this.year} ${this.state} ${this.city} ${this.pincode}`;
+            };
+        }
+
+        function insert() {
+            let state = document.getElementById("state").value;
+            let city = document.getElementById("city").value;
+            let year = document.getElementById("year").value;
+            let pincode = document.getElementById("pincode").value;
+
+            if (state && city && year && pincode) {
+                let newCity = new City(state, city, year, pincode);
+                cities.push(newCity);
+                displayCities();
+                clearInputs();
+            } else {
+                alert("Please fill in all fields!");
+            }
+        }
+
+        function displayCities(filteredCities = cities) {
+            let cityList = document.getElementById("cityList");
+            cityList.innerHTML = "";
+            filteredCities.forEach(city => {
+                let li = document.createElement("li");
+                li.textContent = city.describe();
+                cityList.appendChild(li);
+            });
+        }
+
+        function clearInputs() {
+            document.getElementById("state").value = "";
+            document.getElementById("city").value = "";
+            document.getElementById("year").value = "";
+            document.getElementById("pincode").value = "";
+        }
+
+        function clearDisplay() {
+            document.getElementById("cityList").innerHTML = "";
+        }
+
+        function searchCities() {
+            let searchTerm = document.getElementById("searchInput").value.toLowerCase();
+            if (searchTerm) {
+                let filteredCities = cities.filter(city =>
+                    city.state.toLowerCase().includes(searchTerm) ||
+                    city.city.toLowerCase().includes(searchTerm)
+                );
+                displayCities(filteredCities);
+            } else {
+                alert("Please enter a search term!");
+            }
+        }
+    </script>
+
+</body>
+</html>

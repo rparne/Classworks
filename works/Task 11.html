@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<head>
+    <title>While Loop Example</title>
+</head>
+<body>
+    <h2>While Loop Example</h2>
+    <p id="output"></p>
+
+    <script>
+        let text = "";
+        let i = 1;
+        while (i <= 5) {
+            text += i + " ";
+            i++;
+        }
+        console.log(text); 
+        document.getElementById("output").innerText = text;
+    </script>
+</body>
+</html>

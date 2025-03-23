@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+</head>
+<body>
+    <h2>Light Bulb</h2>
+    <iframe src="C:\Users\rparne\Downloads\bulb\bulb_q.html" width="400" height="300" style="border:none;"></iframe>
+</body>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+        }
+        #bulb {
+            width: 100px;
+            height: 150px;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+        .btn {
+            font-size: 20px;
+            width: 100px;
+            padding: 10px;
+            border: none;
+            border-radius: 10px;
+            background-color: grey;
+            color: white;
+            cursor: pointer;
+        }
+        .btn:hover {
+            font-weight: bold;
+            background-color: rgba(0, 0, 0, 0.3);
+            transition: 0.3s;
+        }
+        #onButton {
+            background-color: grey;
+        }
+        #offButton {
+            background-color: grey;
+        }
+    </style>
+
+    <script>
+        function turn_on() {
+            document.getElementById("bulb").src = "C:\Users\rparne\Downloads\bulb\bulb_on.gif";
+            document.getElementById("onButton").style.backgroundColor = "green";
+            document.getElementById("offButton").style.backgroundColor = "grey";
+        }
+
+        function turn_off() {
+            document.getElementById("bulb").src = "C:\Users\rparne\Downloads\bulb\bulb_off.gif";
+            document.getElementById("offButton").style.backgroundColor = "red";
+            document.getElementById("onButton").style.backgroundColor = "grey";
+        }
+    </script>
+</head>
+</html>
